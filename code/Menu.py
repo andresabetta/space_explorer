@@ -136,7 +136,7 @@ class Menu:
         
         # Controles do jogo
         controls_text = self.subtitle_font.render(
-            "P1: SETAS + CTRL | P2: WASD + CTRL", True, C_WHITE)
+            "P1: SETAS + ESPAÇO", True, C_WHITE)
         controls_rect = controls_text.get_rect(center=(WIN_WIDTH // 2, WIN_HEIGHT - 25))
         self.window.blit(controls_text, controls_rect)
         

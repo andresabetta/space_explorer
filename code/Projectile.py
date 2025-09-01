@@ -1,5 +1,5 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+# Aluno: Andre Sabetta - RU: 4739336
+
 import pygame
 
 from code.Entity import Entity
@@ -10,21 +10,17 @@ class Projectile(Entity):
     def __init__(self, name: str, position: tuple, size: tuple, direction: int, owner_tag: str):
         super().__init__(name, position, size)
         self.direction = 1 if direction >= 0 else -1
-        self.owner_tag = owner_tag  # 'player' ou 'enemy'
+        self.owner_tag = owner_tag
         self.speed.x = ENTITY_SPEED.get(name, 8)
         self.damage = ENTITY_DAMAGE.get(name, 10)
 
     def update(self, platforms, targets):
-        # Movimento simples horizontal
         self.position.x += self.speed.x * self.direction
         self.update_rect()
 
-        # Colisão com plataformas sólidas
         for platform in platforms:
             if self.check_collision(platform):
-                return False  # Remove projétil
-
-        # Colisão com alvos
+                return False
         for target in targets:
             if self.check_collision(target):
                 target.take_damage(self.damage)

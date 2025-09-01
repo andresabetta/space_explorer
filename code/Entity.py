@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+
 import pygame
 
 from code.Const import ENTITY_SPEED, ENTITY_HEALTH, ENTITY_DAMAGE, ENTITY_SCORE
@@ -16,7 +15,7 @@ class Entity:
         self.damage = ENTITY_DAMAGE.get(name, 0)
         self.score = ENTITY_SCORE.get(name, 0)
         
-        # Sprite e rect
+
         self.image = load_image(f"{name}.png", (int(size[0]), int(size[1])))
         self.rect = self.image.get_rect(topleft=(int(position[0]), int(position[1])))
         

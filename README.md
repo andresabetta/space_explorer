@@ -1,31 +1,21 @@
-# Space Explorer - Aventura Espacial de Plataforma
+# Space Explorer
 
-Um jogo de plataforma espacial desenvolvido em Python com Pygame, onde você controla um explorador espacial em busca de gemas e chaves em ambientes alienígenas perigosos.
+**Aluno:** Andre Sabetta - RU: 4739336  
+
+Um jogo de combate espacial desenvolvido em Python com Pygame, onde você controla uma nave espacial enfrentando ondas de inimigos.
 
 ## Características do Jogo
 
 ### Mecânicas Principais
-- **Movimento de Plataforma**: Pule, corra e explore mundos espaciais
-- **Sistema de Coleta**: Colete gemas, chaves e power-ups
-- **Múltiplos Tipos de Plataforma**:
-  - Estáticas (marrom)
-  - Móveis (azul)
-  - Quebráveis (laranja) 
-  - Trampolim (verde)
-- **Inimigos Inteligentes**: 
-  - Patrulheiros que seguem rotas
-  - Emboscadores que atacam quando você se aproxima
-- **Física Realista**: Gravidade, pulo duplo e colisões precisas
-
-### Modos de Jogo
-1. **1 Jogador**: Aventura solo
-2. **2 Jogadores Cooperativo**: Trabalhem juntos para completar os níveis
-3. **2 Jogadores Competitivo**: Compitam por maior pontuação
+- **Combate Espacial**: Controle sua nave e atire em inimigos
+- **Movimento Livre**: Voe em todas as direções no espaço
+- **Inimigos Inteligentes**: Naves inimigas que perseguem e atacam
+- **Sistema de Vida**: Tome dano e pisque quando atingido
 
 ### Controles
-- **Jogador 1**: Setas do teclado + Ctrl direito
-- **Jogador 2**: WASD + Ctrl esquerdo
-- **ESC**: Pausar/Voltar ao menu
+- **Setas**: Movimento da nave em 8 direções
+- **Espaço**: Atirar
+- **ESC**: Sair do jogo
 
 ## Instalação
 
@@ -43,24 +33,15 @@ python main.py
 ## Como Jogar
 
 ### Objetivo
-- Colete todas as gemas e chaves em cada nível
-- Evite ou derrote os inimigos
-- Complete os dois níveis para vencer
+- Destrua todas as naves inimigas para vencer
+- Sobreviva aos ataques inimigos
+- Use o espaço para atirar
 
 ### Dicas
-- Use o pulo duplo para alcançar plataformas altas
-- Plataformas quebráveis desmoronam depois de um tempo
-- Plataformas trampolim te impulsionam para cima
-- Inimigos ficam mais agressivos quando você se aproxima
-- Colete corações para recuperar vida
-- Power-ups aumentam temporariamente sua velocidade
-
-### Pontuação
-- Gemas: 50 pontos cada
-- Chaves: 100 pontos cada
-- Power-ups: 75 pontos cada
-- Inimigos derrotados: 150-200 pontos
-- Bônus de vida restante no final
+- Mova-se constantemente para evitar projéteis
+- Inimigos aparecem das bordas da tela
+- Sua nave pisca quando toma dano
+- Elimine todos os inimigos para completar o nível
 
 ## Estrutura do Projeto
 
@@ -73,14 +54,12 @@ SpaceExplorer/
     ├── __init__.py     # Pacote Python
     ├── Game.py         # Classe principal do jogo
     ├── Menu.py         # Sistema de menus
-    ├── Level.py        # Lógica dos níveis
-    ├── Score.py        # Sistema de pontuação
+    ├── Level.py        # Lógica do nível
     ├── Entity.py       # Classe base para entidades
-    ├── Player.py       # Lógica do jogador
-    ├── Enemy.py        # IA dos inimigos
-    ├── Platform.py     # Sistema de plataformas
-    ├── Collectible.py  # Itens coletáveis
-    ├── Background.py   # Sistema de fundo paralaxe
+    ├── Player.py       # Lógica da nave do jogador
+    ├── Enemy.py        # IA das naves inimigas
+    ├── Projectile.py   # Sistema de projéteis
+    ├── Background.py   # Sistema de fundo
     └── Const.py        # Constantes do jogo
 ```
 
@@ -93,4 +72,4 @@ SpaceExplorer/
 
 ## Créditos
 
-Desenvolvido como projeto educacional baseado em conceitos de jogos de plataforma clássicos, com foco em mecânicas de exploração espacial e aventura cooperativa.
+Jogo de combate espacial desenvolvido em Python com Pygame.

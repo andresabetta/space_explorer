@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+
 import pygame
 
 from code.Const import WIN_WIDTH, WIN_HEIGHT, PLAYER_KEY_UP, PLAYER_KEY_DOWN, PLAYER_KEY_LEFT, PLAYER_KEY_RIGHT, PLAYER_KEY_SHOOT, SHOT_COOLDOWN
@@ -20,7 +19,7 @@ class Player(Entity):
         self.shoot_cooldown_ms = 0
 
     def handle_input(self, keys, projectiles_list):
-        # Movimento livre em 8 direções (modo nave)
+
         self.velocity.x = 0
         self.velocity.y = 0
         if keys[PLAYER_KEY_LEFT[self.name]]:
@@ -34,7 +33,7 @@ class Player(Entity):
         if keys[PLAYER_KEY_DOWN[self.name]]:
             self.velocity.y = self.speed.x
 
-        # Tiro
+
         if keys[PLAYER_KEY_SHOOT[self.name]] and self.shoot_cooldown_ms <= 0:
             shot_name = 'Player1Shot'
             shot_pos = (self.rect.centerx + (14 if self.facing_right else -14), self.rect.centery - 4)
@@ -44,12 +43,12 @@ class Player(Entity):
             self.shoot_cooldown_ms = SHOT_COOLDOWN['Player1']
 
     def update(self, platforms, enemies, collectibles, delta_ms):
-        # Atualizar posição livremente (sem gravidade)
+
         self.position.x += self.velocity.x
         self.position.y += self.velocity.y
         self.update_rect()
         
-        # Limitar aos limites da tela
+
         if self.rect.left < 0:
             self.rect.left = 0
         if self.rect.right > WIN_WIDTH:
@@ -61,16 +60,16 @@ class Player(Entity):
         self.position.x = self.rect.x
         self.position.y = self.rect.y
         
-        # Colisão com inimigos
+
         if not self.invulnerable:
             for enemy in enemies:
                 if self.check_collision(enemy):
                     self.take_damage(enemy.damage)
                     self.invulnerable = True
-                    self.invulnerability_timer = 1000  # ms (1 segundo de piscada)
+                    self.invulnerability_timer = 1000
 
         
-        # Timers
+
         if self.action_cooldown > 0:
             self.action_cooldown -= 1
         
@@ -82,21 +81,17 @@ class Player(Entity):
         if self.shoot_cooldown_ms > 0:
             self.shoot_cooldown_ms -= delta_ms
         
-        # Sem limite de gravidade no modo nave
-
     def take_damage(self, damage: int):
-        """Sobrescreve take_damage para ativar invulnerabilidade"""
         super().take_damage(damage)
-        # Sempre ativar invulnerabilidade quando tomar dano
         self.invulnerable = True
-        self.invulnerability_timer = 1000  # ms (1 segundo de piscada)
+        self.invulnerability_timer = 1000
 
     def perform_action(self):
         pass
 
     def draw(self, surface):
         if self.invulnerable and (pygame.time.get_ticks() // 50) % 2 == 0:
-            return  # Pisca mais rápido (a cada 50ms)
+            return
         image = self.image if self.facing_right else pygame.transform.flip(self.image, True, False)
         surface.blit(image, self.rect)
 

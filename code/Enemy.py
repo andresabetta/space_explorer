@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+
 import pygame
 import random
 
@@ -33,8 +32,6 @@ class Enemy(Entity):
 
     def update(self, players, platforms, projectiles_list=None, delta_ms=16):
         nearest_player = self.find_nearest_player(players)
-        
-        # Modo nave espacial: sempre perseguir o jogador mais próximo
         if nearest_player:
             self.target = nearest_player
             distance = self.distance_to(nearest_player)
@@ -46,10 +43,7 @@ class Enemy(Entity):
                 self.is_aggro = False
                 self.speed.x = self.original_speed
             
-            # Orientar nave na direção do movimento
             self.facing_right = self.target.position.x > self.position.x
-            
-            # Movimento em direção ao jogador (modo nave espacial)
             self.space_combat_behavior(nearest_player)
         else:
             self.target = None
@@ -61,7 +55,7 @@ class Enemy(Entity):
         if self.patrol_timer > 0:
             self.patrol_timer -= 1
 
-        # Tiro à distância
+
         if self.attack_type == 'ranged' and self.target and projectiles_list is not None:
             if self.shoot_cooldown_ms <= 0:
                 shot_name = 'Enemy2Shot'
@@ -105,26 +99,20 @@ class Enemy(Entity):
                     self.velocity.x = self.speed.x
 
     def space_combat_behavior(self, target):
-        """Comportamento para modo nave espacial - sempre se move em direção ao jogador"""
         if not target:
             return
             
-        # Calcular direção para o jogador
         direction = pygame.Vector2(target.position) - self.position
         
         if direction.length() > 0:
             direction = direction.normalize()
             
-            # Movimento em X e Y para modo nave espacial (velocidade bem reduzida)
-            self.velocity.x = direction.x * self.speed.x * 0.4  # 40% da velocidade original
-            self.velocity.y = direction.y * self.speed.x * 0.2  # Movimento vertical bem lento
+            self.velocity.x = direction.x * self.speed.x * 0.4
+            self.velocity.y = direction.y * self.speed.x * 0.2
             
-            # Atualizar posição
             self.position.x += self.velocity.x
             self.position.y += self.velocity.y
             self.update_rect()
-            
-            # Ataques baseados no tipo
             if self.attack_cooldown <= 0:
                 if self.attack_type == 'ranged':
                     self.ranged_attack()
@@ -132,7 +120,6 @@ class Enemy(Entity):
                     self.charge_attack()
 
     def ambush_behavior(self, players, platforms):
-        """Comportamento original de emboscada (não usado no modo nave)"""
         if self.target and self.attack_cooldown <= 0:
             if self.attack_type == 'ranged':
                 self.ranged_attack()

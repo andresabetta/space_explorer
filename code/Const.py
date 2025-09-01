@@ -1,8 +1,7 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+
 import pygame
 
-# Cores
+
 C_ORANGE = (255, 128, 0)
 C_YELLOW = (255, 255, 128)
 C_WHITE = (255, 255, 255)
@@ -12,12 +11,12 @@ C_BLUE = (0, 0, 255)
 C_RED = (255, 0, 0)
 C_PURPLE = (128, 0, 128)
 
-# Eventos
+
 EVENT_ENEMY = pygame.USEREVENT + 1
 EVENT_TIMEOUT = pygame.USEREVENT + 2
 EVENT_COLLECTIBLE = pygame.USEREVENT + 3
 
-# Velocidades das entidades
+
 ENTITY_SPEED = {
     'Level1Bg0': 0,
     'Level1Bg1': 1,
@@ -118,31 +117,28 @@ ENTITY_SCORE = {
     'Key': 100,
 }
 
-# Opções do menu (apenas 1 jogador)
+
 MENU_OPTION = (
-    'NOVO JOGO 1P',
+    'NOVO JOGO',
     'SAIR'
 )
 
 # Controles
-action_key = pygame.K_RCTRL
 PLAYER_KEY_UP = {'Player1': pygame.K_UP}
 PLAYER_KEY_DOWN = {'Player1': pygame.K_DOWN}
 PLAYER_KEY_LEFT = {'Player1': pygame.K_LEFT}
 PLAYER_KEY_RIGHT = {'Player1': pygame.K_RIGHT}
-PLAYER_KEY_ACTION = {'Player1': action_key}
 PLAYER_KEY_SHOOT = {'Player1': pygame.K_SPACE}
 
-# Spawn e tempo
-SPAWN_TIME = 2500  # Spawn mais espaçado (2.5 segundos)
+SPAWN_TIME = 2500
 TIMEOUT_STEP = 100
-TIMEOUT_LEVEL = 60000  # 60 segundos para eliminar todos
+TIMEOUT_LEVEL = 60000
 
-# Janela
+
 WIN_WIDTH = 800
 WIN_HEIGHT = 600
 
-# HUD
+
 SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),
              'EnterName': (WIN_WIDTH / 2, 80),
              'Label': (WIN_WIDTH / 2, 90),
@@ -159,12 +155,8 @@ SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),
              9: (WIN_WIDTH / 2, 290),
              }
 
-# Configurações do modo nave (sem gravidade)
-# GRAVITY e JUMP_FORCE removidos - não utilizados no modo nave
-
-# Cooldowns de tiro
 SHOT_COOLDOWN = {
-    'Player1': 300,  # ms
+    'Player1': 300,
     'Enemy2': 1200,
     'Enemy1': 900,
 }
